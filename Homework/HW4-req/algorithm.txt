@@ -1,0 +1,39 @@
+Per la risoluzione del homework ho seguito il seguente ordine di risoluzione delle funzioni:
+1 - TReader(nome:str)->list[str]
+2 - group(start:str)->list[str]
+3 - alfa(parole:list, i:int)->dict
+4 - count(parole:list[str])->list[dict]
+5 - most_frequent_chars(filename:str)->str
+
+1. TReader(nome:str)->list[str]:
+
+    La funzione prevede la lettura del file mediante la funzione open e l'attributo read, 
+    subito dopo rimpiazza tutti gli spazi e le tabulazioni con dei vuoti e finisce 
+    dividendo il testo in tante stringhe più piccole ognuna contenente una parola
+    mediante i metodi delle stringhe .replace e .split.
+    
+    Infine ritorna la lista di parole togliendo, prima, tutti i vuoti lasciati 
+    dal processo precedente.
+
+2. group(start:str)->list[str]:
+
+    La funzione consiste nell'unione, sotto un unica lista, di tutte le parole 
+    dei file in analisi tramite il metodo .extend applicato alla lista di supporto
+    che contiene la lista ritornata da TReader.
+
+3. cont(parole:list, i:int)->dict:
+
+    La funzione sfrutta un ciclo for in cui si fa il conteggio dei vari caratteri
+    presenti nella lista in input mediante un dizionario ed il suo metodo .get.    
+
+4. app(parole:list[str])->list[dict]:
+    
+    Questa funzione mette in coda ad una lista, tutti i dizionari ricavati dal 
+    ritorno della funzione count.   
+
+5. most_frequent_chars(filename:str)->str:
+    
+    Passi finali del programma in cui si compone la stringa da ritornare, ma prima 
+    di ciò si filtrano eventuali caratteri con lo stesso numero di occorrenze e si 
+    prende il minore tra loro, da aggiungere poi alla fine del ciclo.
+

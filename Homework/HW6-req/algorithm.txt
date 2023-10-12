@@ -1,0 +1,68 @@
+Per la risoluzione del homework ho seguito il seguente ordine di risoluzione delle funzioni:
+1 - pacEffect(z:int,Zmax:int)->int
+2 - diag(pre:list, x:int, y:int, Xmax:int, Ymax:int)->bool
+3 - move(i:str, x:int, y:int, Xmax:int, Ymax:int)->tuple[int,int]
+4 - color(com:list, pos:list[int,int], img:list)->int
+5 - generate_snake(start_img: str, position: list[int, int], commands: str, out_img: str) -> int
+
+1 - pacEffect(z:int,Zmax:int)->int
+
+    La funzione serve a controllare che una delle due variabili, x e y, non sforino
+    dai confini della tabella tramite i controlli al suo interno.
+
+    I controlli in questione verificano se z<0(più piccolo del minimo) e x>Zmax
+    (maggiore del massimo), e sostituisce il suo valore con 0 o Zmax a seconda
+    del caso.
+
+    Ritorna la coordinata in ingresso se non vi sono modifiche di valore, in caso contrario
+    ritorna la variabile modificata
+
+2 - diag(pre:list, x:int, y:int, Xmax:int, Ymax:int)->bool
+
+    La funzione controlla che l'istruzione che il serpente sta per eseguire non risulti in 
+    un incrocio diagonale con se stesso tramite dei controlli sill'intorno della posizione 
+    attuale e quella futura.
+
+    Esempio: c sono le coordinate attuali, x e y le future
+    vogliamo controllare il movimento verso NW, questo vuol dire che controlliamo la casella
+    di coordinate (c[0]+1,c[1]-1), ossia (x,y), e controlliamo le caselle a N, S, E e W da lì,
+    se almeno due sono occupate, allora il passaggio non può avvenire;
+    
+    In poche parole il controllo consiste nel verificare se almeno due caselle intorno (x,y)
+    sono presenti nella lista di caselle occupate dal serpente, in caso si
+    verificasse questa eventualità, la funzione ritorna Vero e ferma il programma.
+
+    Questo tipo di verifica però non è salva di errori, purtroppo non sono stato in grado di 
+    gestire tutte le eventualità, di fatti il programma si fermerà qualora tutte e quattro 
+    N,S,W,E della posizione di partenza siano bloccate, anche se vi sono una o due mosse 
+    ancora possibili, con gli strumenti attuali non si può sistemare.
+
+    Un futuro upgrade del programma consiste nell'implementazione delle collisioni, in modo 
+    da sistemare ogni sorta di eccezione di movimento, sia diagonale che non.
+
+3 - move(i:str, x:int, y:int, Xmax:int, Ymax:int)->tuple[int,int]
+
+    La funzione si occupa del cambio di coordinate per permettere 
+    il movimento del serpente nella tabella.
+
+    Il cambio avviene tramite una catena di if ed elif che, in base
+    all'istruzione, cambia le coordinate.
+
+4 - color(com:list, pos:list[int,int], img:list)->int
+
+    La funzione interagisce con l'immagine e, oltre a controllarne 
+    i colori già presenti, modifica le tuple al passaggio del serpente
+    rendendole prima grige e poi di verde partendo dalla fine a ritroso.
+
+    Ritorna la lunghezza del serpente, data dalla lunghezza della lista pre, 
+    che indica le posizioni di ogni casella del serpente.
+
+5 - generate_snake(start_img: str, position: list[int, int], commands: str, out_img: str) -> int
+
+    Funzione di inizio e fine del programma, prende come parametri 
+    i dati da passare alle altre funzioni per iniziare le varie 
+    operazioni di colore e traccia.
+
+    Restituisce la lunghezza del serpente, ma prima salva le modifiche 
+    fatte all'immagine in un file, il nome del file in questione viene 
+    ricevuto tra i parametri di ingresso.

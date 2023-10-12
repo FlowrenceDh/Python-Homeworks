@@ -1,0 +1,40 @@
+Per la risoluzione del homework ho seguito il seguente ordine di risoluzione delle funzioni:
+1 - list_of_weigths_to_number(weigths : list[int] ) -> int
+2 - xkcd_to_list_of_weights(xkcd : str) -> list[int]
+3 - decode_value(xkcd : str ) -> int
+4 - decode_XKCD_tuple(xkcd_values : tuple[str, ...], k : int) -> list[int]
+
+1. list_of_weigths_to_number(weigths : list[int] ) -> int
+
+	Durante lo sviluppo della funzione ho rinominato weigths in pesi per comodità, poi ho dichiarato 
+	alcune variabili di lavoro: n, per mantenere tutti i numeri da sommare, ed s, per mantenere tutti 
+	i numeri da sottrarre.
+
+	Dopo di ciò si esegue un ciclo che passa in rassegna tutti i valori della lista pesi, filtrandoli
+	tramite l'istruzione IF più interna, l'IF più esterno serve da controllo per evitare di andare fuori 
+	offset, infatti sarà sempre vero fino all'ultima iterazione del FOR in cui esegue una semplice 
+	assegnazione definita nel suo ELSE
+
+2. xkcd_to_list_of_weights(xkcd : str) -> list[int]
+
+	Questa funzione è stata forse la più difficile da sviluppare dato il problema del criterio di slicing.
+	
+	La soluzione che ho trovato consiste nel cercare il primo valore diverso da 0 in modo tale da creare 
+	uno slicing preciso che registra, in una lista chiamata pesi, il casting in intero di ciò che viene 
+	mostrato nella finestra definita da i, variabile di inizio, x, variabile di fine.
+	
+	In poche parole, il programma scorre tutta la stringa un passo alla volta e cambia azione in base al 
+	carattere che incontra:
+		0 - il programma non fa nulla, finisce il giro e il contatore x aumenta di 1 il suo valore;
+		1,5 - il programma esegue il taglio della stringa nei punti precedentemente registrati e poi aggiorna 
+			la variabile i nel valore attuale di x, poi il ciclo finisce come di consueto e x viene 
+			incrementato.
+	
+3. decode_value(xkcd : str ) -> int
+	
+	Questa funzione è formata dalle precedenti concatenate, prende una stringa e la trasforma in una lista di 
+	interi, che poi verrà tradotta come descritto nella funzione 1.
+	
+4. decode_XKCD_tuple(xkcd_values : tuple[str, ...], k : int) -> list[int]
+
+	Questa funzione è come la precedente, ma con l'aggiunta di un ordinamento della lista ris(risultato).
